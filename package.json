@@ -1,0 +1,11 @@
+{
+  "name": "pouder-utilities",
+  "version": "1.0.0",
+  "description": "General utitilties for Pounder",
+  "main": "index.js",
+  "scripts": {
+    "test": "run dev"
+  },
+  "author": "Charlie Hall",
+  "license": "MIT"
+}
