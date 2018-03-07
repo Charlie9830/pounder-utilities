@@ -22,7 +22,7 @@ export function ParseDueDate(isComplete, dueDate) {
   // Today.
   if (dueDate.isSame(currentDate, 'day')) {
     return {
-      className: "DueDate Soon",
+      className: "DueDate Today",
       text: "Today"
     }
   }
