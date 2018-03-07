@@ -1,5 +1,7 @@
 import Moment from 'moment';
 
+const dateFormat = "DD-MM-YYYY";
+
 export function ParseDueDate(isComplete, dueDate) {
   if (isComplete) {
     return {
@@ -65,4 +67,20 @@ export function ParseDueDate(isComplete, dueDate) {
       text: ""
     }
   }
+}
+
+export function getDayPickerDate(day) {
+  return new Moment(day, dateFormat)
+}
+
+export function getClearedDate() {
+  return "";
+}
+
+export function getDaysForwardDate(daysForward) {
+  return new Moment(new Date(), dateFormat).add(daysForward, 'd');
+}
+
+export function getWeeksForwardDate(weeksForward) {
+  return new Moment(new Date(), dateFormat).add(weeksForward, 'w');
 }
