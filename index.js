@@ -85,6 +85,10 @@ export function getWeeksForwardDate(weeksForward) {
   return getNormalizedDate( new Moment(new Date(), dateFormat).add(weeksForward, 'w'));
 }
 
+export function getParsedDate(date) {
+  return getNormalizedDate (new Moment(date, ["DD-MM-YY", "DD-MM-YYYY", "DD-MM"]));
+}
+
 function getNormalizedDate(momentDate) {
     return momentDate.startOf('day').hours(12).toISOString();
 }
