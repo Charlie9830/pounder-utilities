@@ -57,7 +57,7 @@ export function ParseDueDate(isComplete, dueDate) {
   if (difference >= 7) {
     return {
       className: "DueDate Later",
-      text: Math.floor(difference / 7) + "w"
+      text: Math.round(difference / 7) + "w"
     }
   }
 
@@ -70,7 +70,7 @@ export function ParseDueDate(isComplete, dueDate) {
 }
 
 export function getDayPickerDate(day) {
-  return new Moment(day, dateFormat)
+  return getNormalizedDate(new Moment(day, dateFormat));
 }
 
 export function getClearedDate() {
@@ -78,9 +78,13 @@ export function getClearedDate() {
 }
 
 export function getDaysForwardDate(daysForward) {
-  return new Moment(new Date(), dateFormat).add(daysForward, 'd');
+  return getNormalizedDate(new Moment(new Date(), dateFormat).add(daysForward, 'd'));
 }
 
 export function getWeeksForwardDate(weeksForward) {
-  return new Moment(new Date(), dateFormat).add(weeksForward, 'w');
+  return getNormalizedDate( new Moment(new Date(), dateFormat).add(weeksForward, 'w'));
+}
+
+function getNormalizedDate(momentDate) {
+    return momentDate.startOf('day').hours(12).toISOString();
 }
