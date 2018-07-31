@@ -78,7 +78,8 @@ export function getClearedDate() {
 }
 
 export function getDaysForwardDate(daysForward) {
-  return getNormalizedDate(new Moment(new Date(), dateFormat).add(daysForward, 'd'));
+  var daysForwardNumber = Number.parseInt(daysForward);
+  return getNormalizedDate(new Moment(new Date(), dateFormat).add(daysForwardNumber, 'd'));
 }
 
 export function getWeeksForwardDate(weeksForward) {
@@ -90,5 +91,5 @@ export function getParsedDate(date) {
 }
 
 function getNormalizedDate(momentDate) {
-    return momentDate.startOf('day').hours(12).toISOString();
+    return momentDate.startOf('day').hours(2).toISOString();
 }
