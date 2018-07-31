@@ -90,6 +90,6 @@ export function getParsedDate(date) {
   return getNormalizedDate (new Moment(date, ["DD-MM-YY", "DD-MM-YYYY", "DD-MM"]));
 }
 
-function getNormalizedDate(momentDate) {
+export function getNormalizedDate(momentDate) {
     return momentDate.startOf('day').hours(2).toISOString();
 }
