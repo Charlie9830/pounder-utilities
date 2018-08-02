@@ -93,3 +93,11 @@ export function getParsedDate(date) {
 export function getNormalizedDate(momentDate) {
     return momentDate.startOf('day').hours(2).toISOString();
 }
+
+
+export function isChecklistDueForRenew(isoDate) {
+  var renewDate = Moment(isoDate);
+  var currentDate = Moment();
+
+  return renewDate.diff(currentDate, 'seconds') < 0;
+}
