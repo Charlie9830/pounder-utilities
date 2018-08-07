@@ -1,6 +1,9 @@
 import Moment from 'moment';
 
 const dateFormat = "DD-MM-YYYY";
+const LONG_DAY_NAMES = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+const SHORT_DAY_NAMES = ['mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'];
+const DAY_NAMES = LONG_DAY_NAMES.concat(SHORT_DAY_NAMES);
 
 export function ParseDueDate(isComplete, dueDate) {
   if (isComplete) {
@@ -94,6 +97,22 @@ export function getNormalizedDate(momentDate) {
     return momentDate.startOf('day').hours(2).toISOString();
 }
 
+export function isDayName(value) {
+  return DAY_NAMES.some(name => {return name === value});
+}
+
+export function getDayNameDate(dayName) {
+  var dayNumber = Moment(dayName, 'dddd').startOf('day').day();
+  var currentDayNumber = Moment().day();
+
+  if (dayNumber > currentDayNumber) {
+      return getDaysForwardDate(dayNumber - currentDayNumber);
+    }
+
+  else {
+    return getNormalizedDate(Moment().endOf('week').add(dayNumber + 1, 'd'));
+  }
+}
 
 export function isChecklistDueForRenew(isoDate) {
   var renewDate = Moment(isoDate);
@@ -101,3 +120,5 @@ export function isChecklistDueForRenew(isoDate) {
 
   return renewDate.diff(currentDate, 'seconds') < 0;
 }
+
+
