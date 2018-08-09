@@ -2,7 +2,7 @@ import Moment from 'moment';
 
 const dateFormat = "DD-MM-YYYY";
 const LONG_DAY_NAMES = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-const SHORT_DAY_NAMES = ['mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'];
+const SHORT_DAY_NAMES = ['mon', 'tues', 'tue', 'wed', 'thurs', 'thur', 'fri', 'sat', 'sun'];
 const DAY_NAMES = LONG_DAY_NAMES.concat(SHORT_DAY_NAMES);
 
 export function ParseDueDate(isComplete, dueDate) {
@@ -98,7 +98,7 @@ export function getNormalizedDate(momentDate) {
 }
 
 export function isDayName(value) {
-  return DAY_NAMES.some(name => {return name === value});
+  return DAY_NAMES.some(function(name) {return name === value});
 }
 
 export function getDayNameDate(dayName) {
