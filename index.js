@@ -114,11 +114,23 @@ export function getDayNameDate(dayName) {
   }
 }
 
-export function isChecklistDueForRenew(isoDate) {
-  var renewDate = Moment(isoDate);
+export function isChecklistDueForRenew(checklistSettings) {  
+  var { initialStartDate, lastRenewDate, renewInterval } = checklistSettings;
+
+  // Determine the next renew Date. if lastRenewDate is blank, that means that the first renew hasn't occured yet. So just use
+  // the inititalStartDate. Otherwise, combine lastRenewDate and renewInterval to get next Renew Date.
+  var nextRenewDate = {};
+  if (lastRenewDate === "") {
+    nextRenewDate = Moment(initialStartDate);
+  }
+
+  else {
+    nextRenewDate = Moment(lastRenewDate).add(renewInterval, 'd');
+  }
+
   var currentDate = Moment();
 
-  return renewDate.diff(currentDate, 'seconds') < 0;
+  return nextRenewDate.diff(currentDate, 'seconds') < 0;
 }
 
 
