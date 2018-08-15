@@ -115,7 +115,9 @@ export function getDayNameDate(dayName) {
 }
 
 export function isChecklistDueForRenew(checklistSettings) {  
-  var { initialStartDate, lastRenewDate, renewInterval } = checklistSettings;
+  var initialStartDate = checklistSettings.initialStartDate;
+  var lastRenewDate = checklistSettings.lastRenewDate;
+  var renewInterval = checklistSettings.renewInterval;
 
   // Determine the next renew Date. if lastRenewDate is blank, that means that the first renew hasn't occured yet. So just use
   // the inititalStartDate. Otherwise, combine lastRenewDate and renewInterval to get next Renew Date.
